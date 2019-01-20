@@ -32,12 +32,12 @@ compilers for this purpose we get nice dependency tracking for our bibliography
 (e.g. regenerate the blogpost if the citation style changes).
 
 >     match "chicago.csl" $ compile cslCompiler
->     match "refs.bib" $ compile biblioCompiler
+>     match "refs.bib"    $ compile biblioCompiler
 
 There is only single actual page on our website.
 
 >     match "page.markdown" $ do
->         route   $ setExtension "html"
+>         route $ setExtension "html"
 
 We cannot use the standard `pandocCompiler` because we need to process the
 references.  This is why we put together our own, accurately named
