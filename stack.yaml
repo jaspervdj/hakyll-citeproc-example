@@ -1,0 +1,4 @@
+resolver: 'lts-13.0'
+extra-deps:
+- 'hakyll-4.12.5.0'
+- 'lrucache-1.2.0.1'
