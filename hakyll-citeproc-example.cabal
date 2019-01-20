@@ -4,7 +4,7 @@ Build-type:         Simple
 Cabal-version:      >= 1.10
 
 Executable site
-  Main-is:          site.lhs
+  Main-is:          README.lhs
   Build-depends:    base == 4.*, hakyll == 4.12.*
   Ghc-options:      -threaded -Wall
   Default-language: Haskell2010
