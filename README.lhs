@@ -20,8 +20,6 @@ The Hakyll website code follows and is fairly simple.
 > {-# LANGUAGE OverloadedStrings #-}
 > import Hakyll
 
-We have one function -- the main one.
-
 > main :: IO ()
 > main = hakyll $ do
 
@@ -40,27 +38,37 @@ There is only single actual page on our website.
 
 >     match "page.markdown" $ do
 >         route   $ setExtension "html"
->         compile $ do
+
+We cannot use the standard `pandocCompiler` because we need to process the
+references.  This is why we put together our own, accurately named
+`myPandocBiblioCompiler`.
+
+`loadAndApplyTemplate` is very standard and just applies our HTML template.
+
+>         compile $
+>             myPandocBiblioCompiler >>=
+>             loadAndApplyTemplate "default.html" defaultContext
+
+The bulk of the problem-related code is in the `myPandocBiblioCompiler`
+definition.
+
+> myPandocBiblioCompiler :: Compiler (Item String)
+> myPandocBiblioCompiler = do
 
 We load in the two auxiliary items.
 
->             csl <- load "chicago.csl"
->             bib <- load "refs.bib"
+>     csl <- load "chicago.csl"
+>     bib <- load "refs.bib"
 
-We cannot use the standard `pandocCompiler` because we need to process the
-references.  This is why we put together our own, based on three simple steps:
+Rather than using the standard `pandocCompiler`, we use three simple steps:
 
-1.  Read out the page as a `String` (`getResourceBody`)
-2.  Parse the `String` to a `Pandoc` document (with resolved references, using
-    `readPandocBiblio`).
-3.  Write the `Pandoc` document back out to a `String` (`writePandoc`).
+1.  Read out the page as a `String` (`getResourceBody`);
+2.  parse the `String` to a `Pandoc` document (with resolved references, using
+    `readPandocBiblio`);
+3.  write the `Pandoc` document back out to a `String` (`writePandoc`).
 
->             getResourceBody
->                 >>= readPandocBiblio defaultHakyllReaderOptions csl bib
->                 >>= return . writePandoc
-
-The next line is fairly standard and applies our HTML template.
-
->                 >>= loadAndApplyTemplate "default.html" defaultContext
+>     getResourceBody >>=
+>         readPandocBiblio defaultHakyllReaderOptions csl bib >>=
+>         return . writePandoc
 
 That's all there is to it!
