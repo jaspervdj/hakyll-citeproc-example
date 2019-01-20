@@ -6,7 +6,7 @@ importantly:
 
 - `refs.bib` contains the bibliography;
 - `page.markdown` references a paper from the bibliography;
-- `site.hs` has the Hakyll code to glue everything together.
+- `site.lhs` has the Hakyll code to glue everything together.
 
 Furthermore,
 
