@@ -22,3 +22,17 @@ Executable site2
 
   Ghc-options:      -threaded -Wall
   Default-language: Haskell2010
+
+Executable site3
+  Main-is:          CiteProcWorking.hs
+  Build-depends:    base == 4.*
+    , pandoc
+    , pandoc-citeproc
+    , process
+    , text
+    , aeson
+    , lens-aeson
+    , lens
+
+  Ghc-options:      -threaded -Wall
+  Default-language: Haskell2010
