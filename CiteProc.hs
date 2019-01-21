@@ -87,6 +87,7 @@ markdownOptions = def { readerExtensions = exts }
       [ Ext_yaml_metadata_block
       , Ext_fenced_code_attributes
       , Ext_auto_identifiers
+      , Ext_citations
       ]
     , githubMarkdownExtensions
     ]
