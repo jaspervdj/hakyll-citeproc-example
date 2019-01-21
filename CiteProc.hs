@@ -10,12 +10,7 @@
 
 module  Main where
 
---import Control.Lens
---import Data.Aeson
---import Data.Aeson.Lens
-
 import Text.Pandoc
---import Text.Pandoc.Shared (stringify)
 import Text.CSL (parseCSL)
 import Text.CSL.Input.Bibtex (readBibtexString)
 import Text.CSL.Pandoc (processCites)
@@ -24,7 +19,6 @@ import System.Process  as System (readProcess)
 import qualified Data.Text.IO as T (readFile, putStrLn)
 import Data.Text (Text)
 import qualified Data.Text as T (pack, unpack)
---import Data.Maybe
 import Control.Monad.IO.Class
 
 
@@ -52,7 +46,9 @@ processCites2 ::  FilePath ->  FilePath -> Text ->  PandocIO Text
 -- process the citations, with biblio in first file and csl in second
 processCites2 cslfn bibfn  t  = do
 
---        style1 <- liftIO $ liftIO $ readCSLFile Nothing   cslfn
+-- read style and biblio file in and convert separately
+-- check that files are present and converted results look ok
+
         styleString <- liftIO $ readFile   cslfn
         let style1 = parseCSL  styleString
 
@@ -65,6 +61,7 @@ processCites2 cslfn bibfn  t  = do
         liftIO $ putStrLn "\nbibReferences \n"
         liftIO $ putStrLn . take 60 . show $ bibReferences
 
+-- process to HTML
         pandoc3   <- readMarkdown markdownOptions  t
 
         let pandoc4 = processCites style1 bibReferences pandoc3
