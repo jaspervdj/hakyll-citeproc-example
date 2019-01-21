@@ -31,7 +31,8 @@ import Control.Monad.IO.Class
 main :: IO ()
 main = do
     -- prepare
-    pageWB <- T.readFile "pageWithBiblio.markdown"
+--    pageWB <- T.readFile "pageWithBiblio.markdown"
+    pageWB <- T.readFile "page.markdown"  -- biblio line
 
     -- process with my code
     html <- unPandocM $ markdownToHTML4x pageWB
@@ -55,11 +56,13 @@ main = do
 markdownToHTML4x :: Text -> PandocIO Text
 markdownToHTML4x t  = do
     pandoc1   <- readMarkdown markdownOptions  t
-    let meta2 = flattenMeta (getMeta pandoc1)
+--    let meta2 = flattenMeta (getMeta pandoc1)
+--
+--    let bib =  T.unpack . fromJust $  ( meta2) ^? key "bibliography" . _String ::  FilePath
+--
+--    if not (bib == "refs.bib") then error "not refs.bib in markdown file" else return ()
 
-    let bib =  T.unpack . fromJust $  ( meta2) ^? key "bibliography" . _String ::  FilePath
-
-    if not (bib == "refs.bib") then error "not refs.bib in markdown file" else return ()
+    let bib = "refs.bib"
 
     pandoc2 <-  processCites2 "chicago.csl" bib t
 
