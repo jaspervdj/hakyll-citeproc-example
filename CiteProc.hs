@@ -17,7 +17,7 @@ import Data.Aeson.Lens
 import Text.Pandoc
 import Text.Pandoc.Shared (stringify)
 import Text.CSL (readCSLFile, parseCSL)
-import Text.CSL.Input.Bibtex (readBibtex)
+import Text.CSL.Input.Bibtex (readBibtex, readBibtexString)
 import Text.CSL.Pandoc (processCites)
 
 import System.Process  as System (readProcess)
@@ -76,17 +76,22 @@ processCites2 cslfn bibfn  t  = do
 
 --        style1 <- liftIO $ liftIO $ readCSLFile Nothing   cslfn
         styleString <- liftIO $ readFile   cslfn
+        let style1 = parseCSL  styleString
 
-        let style1 = parseCSL styleString
+        liftIO $ putStrLn "style1 \n"
+        liftIO $ putStrLn . take 60 . show $ style1
 
-        bibReferences <- liftIO $ readBibtex (const True) True False bibfn
+        bibString <- liftIO $ readFile bibfn
+        bibReferences <- liftIO $ readBibtexString (const True) True False bibString
         -- second parameter is true = bibtex false = biblatex
+        liftIO $ putStrLn "\nbibReferences \n"
+        liftIO $ putStrLn . take 60 . show $ bibReferences
 
         pandoc3   <- readMarkdown markdownOptions  t
 
         let pandoc4 = processCites style1 bibReferences pandoc3
 
-        liftIO $ putStrLn . unwords $  ["processCite2 - result pandoc2", show pandoc4]
+        liftIO $ putStrLn . unwords $  ["\n\nprocessCite2 - result pandoc2", show pandoc4]
         return pandoc4
 
 -- | Handle possible pandoc failures in the Pandoc Monad
