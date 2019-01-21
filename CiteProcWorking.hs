@@ -11,7 +11,7 @@
 module  Main where
 
 import Text.Pandoc
-import Text.CSL (parseCSL)
+import Text.CSL (parseCSL, Style, Reference)
 import Text.CSL.Input.Bibtex (readBibtexString)
 import Text.CSL.Pandoc (processCites)
 
@@ -25,43 +25,30 @@ import Control.Monad.IO.Class
 main :: IO ()
 main = do
     page <- T.readFile "page.markdown"  -- biblio line
-    let bib = "refs.bib"
-    let csl = "chicago.csl"
+    bibString <-  readFile "refs.bib"
+    bibReferences :: [Reference] <-  readBibtexString (const True) True False bibString
+
+    styleString <- liftIO $ readFile   "chicago.csl"
+    let style1 = parseCSL  styleString :: Style
+
     -- process with my code
-    html1 <- unPandocM $    processCites2 csl bib page
+    html1 <- unPandocM $    processCites2 style1 bibReferences page
 
     -- process with system call to pandoc
     html2 <- processCites2x page
 
-    if html1 == html2 then   T.putStrLn "OK - same result \n"
-                     else  do
-                            T.putStrLn "*** not same result \n no references: \n"
-                            T.putStrLn html1
-                            putStrLn "\nthe html should be : \n"
-                            T.putStrLn html2
+
+    T.putStrLn "The two results should be very close: \n With haskell code : \n"
+    T.putStrLn html1
+    putStrLn "\nwith pandoc cmd : \n"
+    T.putStrLn html2
 
     return ()
 
-processCites2 ::  FilePath ->  FilePath -> Text ->  PandocIO Text
+processCites2 ::  Style ->  [Reference] -> Text ->  PandocIO Text
 -- process the citations, with biblio in first file and csl in second
-processCites2 cslfn bibfn  t  = do
+processCites2 style1 bibReferences  t  = do
 
--- read style and biblio file in and convert separately
--- check that files are present and converted results look ok
-
-        styleString <- liftIO $ readFile   cslfn
-        let style1 = parseCSL  styleString
-
-        liftIO $ putStrLn "style1 \n"
-        liftIO $ putStrLn . take 60 . show $ style1
-
-        bibString <- liftIO $ readFile bibfn
-        bibReferences <- liftIO $ readBibtexString (const True) True False bibString
-        -- second parameter is true = bibtex false = biblatex
-        liftIO $ putStrLn "\nbibReferences \n"
-        liftIO $ putStrLn . take 60 . show $ bibReferences
-
--- process to HTML
         pandoc3   <- readMarkdown markdownOptions  t
 
         let pandoc4 = processCites style1 bibReferences pandoc3
@@ -87,7 +74,7 @@ markdownOptions = def { readerExtensions = exts }
       [ Ext_yaml_metadata_block
       , Ext_fenced_code_attributes
       , Ext_auto_identifiers
-      , Ext_citations
+      , Ext_citations           -- <-- this is the important extension
       ]
     , githubMarkdownExtensions
     ]
@@ -105,7 +92,11 @@ processCites2x ::   Text ->   IO Text
 
 processCites2x   t  = do
         let cmd = "pandoc"
-        let cmdargs = ["--from=markdown", "--to=html5", "--filter=pandoc-citeproc", "--bibliography=refs.bib" ]
+        let cmdargs = ["--from=markdown"
+                        , "--to=html5"
+                        , "--filter=pandoc-citeproc"
+                        , "--bibliography=refs.bib"
+                        , "--csl=chicago.csl"]
 
         let cmdinp = T.unpack t
         res :: String <-   System.readProcess cmd cmdargs cmdinp
