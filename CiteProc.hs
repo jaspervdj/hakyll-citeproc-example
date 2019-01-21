@@ -16,7 +16,7 @@ import Data.Aeson.Lens
 
 import Text.Pandoc
 import Text.Pandoc.Shared (stringify)
-import Text.CSL (readCSLFile)
+import Text.CSL (readCSLFile, parseCSL)
 import Text.CSL.Input.Bibtex (readBibtex)
 import Text.CSL.Pandoc (processCites)
 
@@ -59,6 +59,8 @@ markdownToHTML4x t  = do
 
     let bib =  T.unpack . fromJust $  ( meta2) ^? key "bibliography" . _String ::  FilePath
 
+    if not (bib == "refs.bib") then error "not refs.bib in markdown file" else return ()
+
     pandoc2 <-  processCites2 "chicago.csl" bib t
 
     if (pandoc1 == pandoc2) then  liftIO $ putStrLn "\n*** result without references ***\n"
@@ -72,9 +74,13 @@ processCites2 ::  FilePath ->  FilePath -> Text ->  PandocIO Pandoc
 -- process the citations, with biblio in first file and csl in second
 processCites2 cslfn bibfn  t  = do
 
-        style1 <- liftIO $ liftIO $ readCSLFile Nothing   cslfn
+--        style1 <- liftIO $ liftIO $ readCSLFile Nothing   cslfn
+        styleString <- liftIO $ readFile   cslfn
 
-        bibReferences <- liftIO $ readBibtex (const False) False False bibfn
+        let style1 = parseCSL styleString
+
+        bibReferences <- liftIO $ readBibtex (const True) True False bibfn
+        -- second parameter is true = bibtex false = biblatex
 
         pandoc3   <- readMarkdown markdownOptions  t
 
