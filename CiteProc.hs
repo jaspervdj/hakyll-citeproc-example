@@ -10,70 +10,45 @@
 
 module  Main where
 
-import Control.Lens
-import Data.Aeson
-import Data.Aeson.Lens
+--import Control.Lens
+--import Data.Aeson
+--import Data.Aeson.Lens
 
 import Text.Pandoc
-import Text.Pandoc.Shared (stringify)
-import Text.CSL (readCSLFile, parseCSL)
-import Text.CSL.Input.Bibtex (readBibtex, readBibtexString)
+--import Text.Pandoc.Shared (stringify)
+import Text.CSL (parseCSL)
+import Text.CSL.Input.Bibtex (readBibtexString)
 import Text.CSL.Pandoc (processCites)
 
 import System.Process  as System (readProcess)
 import qualified Data.Text.IO as T (readFile, putStrLn)
 import Data.Text (Text)
 import qualified Data.Text as T (pack, unpack)
-import Data.Maybe
+--import Data.Maybe
 import Control.Monad.IO.Class
 
 
 main :: IO ()
 main = do
-    -- prepare
---    pageWB <- T.readFile "pageWithBiblio.markdown"
-    pageWB <- T.readFile "page.markdown"  -- biblio line
-
+    page <- T.readFile "page.markdown"  -- biblio line
+    let bib = "refs.bib"
+    let csl = "chicago.csl"
     -- process with my code
-    html <- unPandocM $ markdownToHTML4x pageWB
+    html1 <- unPandocM $    processCites2 csl bib page
 
     -- process with system call to pandoc
-    html2 <- processCites2x pageWB
+    html2 <- processCites2x page
 
-    if html == html2 then   T.putStrLn "OK - same result \n"
+    if html1 == html2 then   T.putStrLn "OK - same result \n"
                      else  do
-                            T.putStrLn "*** not same result \n"
-                            T.putStrLn html
+                            T.putStrLn "*** not same result \n no references: \n"
+                            T.putStrLn html1
                             putStrLn "\nthe html should be : \n"
                             T.putStrLn html2
 
     return ()
 
-
--- | Convert markdown text to html only if biblio file is in markdown ;
--- to get biblio filename
-
-markdownToHTML4x :: Text -> PandocIO Text
-markdownToHTML4x t  = do
-    pandoc1   <- readMarkdown markdownOptions  t
---    let meta2 = flattenMeta (getMeta pandoc1)
---
---    let bib =  T.unpack . fromJust $  ( meta2) ^? key "bibliography" . _String ::  FilePath
---
---    if not (bib == "refs.bib") then error "not refs.bib in markdown file" else return ()
-
-    let bib = "refs.bib"
-
-    pandoc2 <-  processCites2 "chicago.csl" bib t
-
-    if (pandoc1 == pandoc2) then  liftIO $ putStrLn "\n*** result without references ***\n"
-                            else return ()
-
-    text2 <- writeHtml5String  html5Options pandoc2
-
-    return text2
-
-processCites2 ::  FilePath ->  FilePath -> Text ->  PandocIO Pandoc
+processCites2 ::  FilePath ->  FilePath -> Text ->  PandocIO Text
 -- process the citations, with biblio in first file and csl in second
 processCites2 cslfn bibfn  t  = do
 
@@ -94,8 +69,7 @@ processCites2 cslfn bibfn  t  = do
 
         let pandoc4 = processCites style1 bibReferences pandoc3
 
-        liftIO $ putStrLn . unwords $  ["\n\nprocessCite2 - result pandoc2", show pandoc4]
-        return pandoc4
+        writeHtml5String  html5Options pandoc4
 
 -- | Handle possible pandoc failures in the Pandoc Monad
 unPandocM :: PandocIO a -> IO a
@@ -122,15 +96,8 @@ markdownOptions = def { readerExtensions = exts }
 
 -- | Reasonable options for rendering to HTML
 html5Options :: WriterOptions
-html5Options = def { -- writerHighlightStyle = Just tango
-                    writerExtensions     = writerExtensions def
+html5Options = def { writerExtensions     = writerExtensions def
                    }
-
-
-
-getMeta :: Pandoc -> Meta
-getMeta (Pandoc m _) = m
-
 
 processCites2x ::   Text ->   IO Text
 -- porcess the cites in the text
@@ -139,7 +106,6 @@ processCites2x ::   Text ->   IO Text
 -- the csl and bib file are used from text, not from what is passed
 
 processCites2x   t  = do
-
         let cmd = "pandoc"
         let cmdargs = ["--from=markdown", "--to=html5", "--filter=pandoc-citeproc" ]
 
@@ -148,24 +114,3 @@ processCites2x   t  = do
 
         return  . T.pack $ res
 
---readMarkdown2 :: Text -> IO Pandoc
---readMarkdown2 text1 =  unPandocM $ readMarkdown markdownOptions text1
---
---writeHtml5String2 :: Pandoc -> IO Text
---writeHtml5String2 pandocRes = do
---    p <-  unPandocM $ writeHtml5String html5Options pandocRes
---    return   p
-
-
--- | Flatten a Pandoc 'Meta' into a well-structured JSON object, rendering Pandoc
--- text objects into plain strings along the way.
-flattenMeta :: Meta -> Value
-flattenMeta (Meta meta) = toJSON $ fmap go meta
- where
-  go :: MetaValue -> Value
-  go (MetaMap     m) = toJSON $ fmap go m
-  go (MetaList    m) = toJSONList $ fmap go m
-  go (MetaBool    m) = toJSON m
-  go (MetaString  m) = toJSON m
-  go (MetaInlines m) = toJSON $ stringify m
-  go (MetaBlocks  m) = toJSON $ stringify m
