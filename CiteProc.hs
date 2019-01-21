@@ -104,7 +104,7 @@ processCites2x ::   Text ->   IO Text
 
 processCites2x   t  = do
         let cmd = "pandoc"
-        let cmdargs = ["--from=markdown", "--to=html5", "--filter=pandoc-citeproc" ]
+        let cmdargs = ["--from=markdown", "--to=html5", "--filter=pandoc-citeproc", "--bibliography=refs.bib" ]
 
         let cmdinp = T.unpack t
         res :: String <-   System.readProcess cmd cmdargs cmdinp
