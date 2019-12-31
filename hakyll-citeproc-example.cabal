@@ -8,3 +8,31 @@ Executable site
   Build-depends:    base == 4.*, hakyll == 4.12.*
   Ghc-options:      -threaded -Wall
   Default-language: Haskell2010
+
+Executable site2
+  Main-is:          CiteProc.hs
+  Build-depends:    base == 4.*
+    , pandoc
+    , pandoc-citeproc
+    , process
+    , text
+    , aeson
+    , lens-aeson
+    , lens
+
+  Ghc-options:      -threaded -Wall
+  Default-language: Haskell2010
+
+Executable site3
+  Main-is:          CiteProcWorking.hs
+  Build-depends:    base == 4.*
+    , pandoc
+    , pandoc-citeproc
+    , process
+    , text
+    , aeson
+    , lens-aeson
+    , lens
+
+  Ghc-options:      -threaded -Wall
+  Default-language: Haskell2010

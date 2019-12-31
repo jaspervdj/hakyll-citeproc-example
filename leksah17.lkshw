@@ -1,0 +1,12 @@
+{
+    "packageVcsConf": {},
+    "projectFiles": [
+        "stack.yaml"
+    ],
+    "saveTime": "Mon Jan 21 09:33:02 CET 2019",
+    "name": "leksah17",
+    "activeProjectFile": "stack.yaml",
+    "version": 4,
+    "activePackFile": "hakyll-citeproc-example.cabal",
+    "activeComponent": null
+}

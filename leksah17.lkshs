@@ -1,0 +1,525 @@
+{
+    "recentOpenedWorksp": [
+        "/home/frank/Workspace8/SSG/leksah17b.lkshw",
+        "/home/frank/Workspace8/SSG/leksah18.lkshw",
+        "/home/frank/Workspace8/fromOthers/sprinkles/leksah4sprinkles17.lkshw"
+    ],
+    "activePaneN": [
+        "CiteProc.hs",
+        "README.lhs",
+        "Pandoc.hs",
+        "Log",
+        "hakyll-citeproc-example.cabal",
+        "Search",
+        "Errors",
+        "stack.yaml",
+        "FileMgt.hs",
+        "Symbol Info",
+        "Grep",
+        "Modules",
+        "Workspace"
+    ],
+    "workspacePath": "/home/frank/Workspace8/hakyll-citeproc-example/leksah17.lkshw",
+    "recentOpenedFiles": [
+        "/home/frank/Workspace8/hakyll-citeproc-example/page.markdown",
+        "/home/frank/Workspace8/hakyll-citeproc-example/pageWithBiblio.markdown",
+        "/home/frank/Workspace8/SSG/SSG.cabal",
+        "/home/frank/Workspace8/SSG/test/Lib/Pandoc_test.hs",
+        "/home/frank/Workspace8/SSG/test/Lib/Foundation_test.hs",
+        "/home/frank/Workspace8/uniform/uniform-strings/Uniform/Strings/Conversion.hs",
+        "/home/frank/Workspace8/uniform/uniform-fileio/Uniform/FileIOalgebra.hs",
+        "/home/frank/Workspace8/SSG/src/serverSG.hs",
+        "/home/frank/Workspace8/SSG/Lib/Foundation.hs",
+        "/home/frank/Workspace8/uniform/uniform-fileio/tests/Uniform/Filenames_test.hs",
+        "/home/frank/Workspace8/SSG/test/ExampleTesting.hs",
+        "/home/frank/Workspace8/SSG/test/Lib/Bake_test.hs"
+    ],
+    "windowSize": [
+        3831,
+        1002
+    ],
+    "completionSize": [
+        753,
+        403
+    ],
+    "toolbarVisibleS": true,
+    "sessionVersion": 3,
+    "saveTime": "Mon Jan 21 16:08:22 CET 2019",
+    "fullScreen": false,
+    "population": [
+        [
+            {
+                "tag": "BufferSt",
+                "contents": {
+                    "tag": "BufferState",
+                    "contents": [
+                        "/home/frank/Workspace8/hakyll-citeproc-example/CiteProc.hs",
+                        3498
+                    ]
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "ErrorsSt",
+                "contents": {
+                    "showTestFails": true,
+                    "showErrors": true,
+                    "showSuggestions": true,
+                    "showWarnings": true
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "TopP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "BufferSt",
+                "contents": {
+                    "tag": "BufferState",
+                    "contents": [
+                        "/home/frank/Workspace8/SSG/Lib/FileMgt.hs",
+                        1292
+                    ]
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "TopP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "GrepSt",
+                "contents": []
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "BottomP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "LogSt",
+                "contents": []
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "TopP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "ModulesSt",
+                "contents": [
+                    200,
+                    [
+                        {
+                            "tag": "SystemScope"
+                        },
+                        false
+                    ],
+                    [
+                        "ModuleName [\"Foreign\",\"Marshal\",\"Utils\"]",
+                        "with"
+                    ],
+                    {
+                        "packageDExp": [
+                            [],
+                            []
+                        ],
+                        "systemExpNoBlack": [
+                            [
+                                [
+                                    41,
+                                    10
+                                ],
+                                [
+                                    41
+                                ],
+                                [
+                                    16
+                                ],
+                                [
+                                    15,
+                                    5,
+                                    8
+                                ],
+                                [
+                                    15,
+                                    5
+                                ],
+                                [
+                                    15
+                                ]
+                            ],
+                            []
+                        ],
+                        "workspaceExpNoBlack": [
+                            [],
+                            []
+                        ],
+                        "packageExpNoBlack": [
+                            [],
+                            []
+                        ],
+                        "workspaceDExp": [
+                            [],
+                            []
+                        ],
+                        "packageExp": [
+                            [],
+                            []
+                        ],
+                        "workspaceDExpNoBlack": [
+                            [],
+                            []
+                        ],
+                        "packageDExpNoBlack": [
+                            [],
+                            []
+                        ],
+                        "systemExp": [
+                            [],
+                            []
+                        ],
+                        "workspaceExp": [
+                            [],
+                            []
+                        ]
+                    }
+                ]
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "TopP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "BufferSt",
+                "contents": {
+                    "tag": "BufferState",
+                    "contents": [
+                        "/home/frank/Workspace8/SSG/Lib/Pandoc.hs",
+                        3951
+                    ]
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "BufferSt",
+                "contents": {
+                    "tag": "BufferState",
+                    "contents": [
+                        "/home/frank/Workspace8/hakyll-citeproc-example/README.lhs",
+                        2318
+                    ]
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "SearchSt",
+                "contents": {
+                    "searchMode": {
+                        "caseSense": false,
+                        "tag": "Prefix"
+                    },
+                    "searchString": "",
+                    "searchScope": {
+                        "tag": "SystemScope"
+                    }
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "TopP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "InfoSt",
+                "contents": {
+                    "tag": "Real",
+                    "contents": "RealDescr {dscName' = \"with\", dscMbTypeStr' = Just \"with :: Storable a => a -> (Ptr a -> IO b) -> IO b\\n\", dscMbModu' = Just (PM {pack = PackageIdentifier {pkgName = PackageName \"base\", pkgVersion = mkVersion [4,11,1,0]}, modu = ModuleName [\"Foreign\",\"Marshal\",\"Utils\"]}), dscMbLocation' = Nothing, dscMbComment' = Nothing, dscTypeHint' = VariableDescr, dscExported' = True}"
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "BottomP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "WorkspaceSt",
+                "contents": []
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "BufferSt",
+                "contents": {
+                    "tag": "BufferState",
+                    "contents": [
+                        "/home/frank/Workspace8/hakyll-citeproc-example/hakyll-citeproc-example.cabal",
+                        476
+                    ]
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                }
+            ]
+        ],
+        [
+            {
+                "tag": "BufferSt",
+                "contents": {
+                    "tag": "BufferState",
+                    "contents": [
+                        "/home/frank/Workspace8/hakyll-citeproc-example/stack.yaml",
+                        52
+                    ]
+                }
+            },
+            [
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "RightP"
+                },
+                {
+                    "tag": "SplitP",
+                    "contents": "LeftP"
+                }
+            ]
+        ]
+    ],
+    "findbarState": [
+        true,
+        {
+            "wrapAround": true,
+            "entryHist": [
+                "putStrLn",
+                "A_M",
+                "readEither",
+                "L",
+                "M",
+                "find bibliography",
+                "could ",
+                "templatePath, reportFilePath :: Path Abs Dir\n",
+                "bb2t",
+                "newSession",
+                "cook"
+            ],
+            "regex": false,
+            "entryStr": "putStrLn",
+            "entireWord": false,
+            "replaceHist": [],
+            "lineNr": 1,
+            "caseSensitive": true,
+            "replaceStr": "T.putStrLn"
+        }
+    ],
+    "layoutS": {
+        "tag": "VerticalP",
+        "contents": [
+            {
+                "tag": "VerticalP",
+                "contents": [
+                    {
+                        "tag": "TerminalP",
+                        "currentPage": 0,
+                        "detachedId": null,
+                        "paneTabs": "TopP",
+                        "detachedSize": null,
+                        "paneGroups": {}
+                    },
+                    {
+                        "tag": "VerticalP",
+                        "contents": [
+                            {
+                                "tag": "TerminalP",
+                                "currentPage": 1,
+                                "detachedId": null,
+                                "paneTabs": "TopP",
+                                "detachedSize": null,
+                                "paneGroups": {}
+                            },
+                            {
+                                "tag": "VerticalP",
+                                "contents": [
+                                    {
+                                        "tag": "TerminalP",
+                                        "currentPage": 0,
+                                        "detachedId": null,
+                                        "paneTabs": "TopP",
+                                        "detachedSize": null,
+                                        "paneGroups": {}
+                                    },
+                                    {
+                                        "tag": "TerminalP",
+                                        "currentPage": 0,
+                                        "detachedId": null,
+                                        "paneTabs": "TopP",
+                                        "detachedSize": null,
+                                        "paneGroups": {}
+                                    },
+                                    801
+                                ]
+                            },
+                            934
+                        ]
+                    },
+                    975
+                ]
+            },
+            {
+                "tag": "HorizontalP",
+                "contents": [
+                    {
+                        "tag": "TerminalP",
+                        "currentPage": 2,
+                        "detachedId": null,
+                        "paneTabs": "TopP",
+                        "detachedSize": null,
+                        "paneGroups": {}
+                    },
+                    {
+                        "tag": "TerminalP",
+                        "currentPage": 1,
+                        "detachedId": null,
+                        "paneTabs": "TopP",
+                        "detachedSize": null,
+                        "paneGroups": {}
+                    },
+                    572
+                ]
+            },
+            3060
+        ]
+    }
+}
